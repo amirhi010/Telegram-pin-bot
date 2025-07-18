@@ -1,0 +1,35 @@
+telegram-pin-bot/
+├── bot.py
+├── requirements.txt
+├── .gitignore
+__pycache__/
+*.pyc
+.env
+python-telegram-bot==20.0
+import os
+from telegram import Update
+from telegram.ext import Updater, MessageHandler, Filters, CallbackContext
+
+TOKEN = os.environ['BOT_TOKEN']
+PIN_KEYWORD = '#pinme'
+
+def pin_message(update: Update, context: CallbackContext):
+    msg = update.message
+    if msg and PIN_KEYWORD in msg.text:
+        context.bot.pin_chat_message(chat_id=msg.chat_id, message_id=msg.message_id)
+
+def main():
+    updater = Updater(TOKEN)
+    dp = updater.dispatcher
+    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, pin_message))
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
+git init
+git add .
+git commit -m "Initial bot code"
+git branch -M main
+git remote add origin https://github.com/USERNAME/telegram-pin-bot.git
+git push -u origin main
