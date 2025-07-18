@@ -10,8 +10,8 @@ import os
 from telegram import Update
 from telegram.ext import Updater, MessageHandler, Filters, CallbackContext
 
-TOKEN = os.environ['BOT_TOKEN']
-PIN_KEYWORD = '#pinme'
+TOKEN = os.environ['8089257318:AAET837AUz-AOi8-H1NiUAByFPe122FOLLw']
+PIN_KEYWORD = '#شکار'
 
 def pin_message(update: Update, context: CallbackContext):
     msg = update.message
